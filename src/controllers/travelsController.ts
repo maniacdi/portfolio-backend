@@ -1,13 +1,12 @@
-// src/controllers/travelsController.ts
 import { Request, Response } from 'express';
 import Travel, { ITravel } from '../models/Travel';
 
-// Obtener todos los viajes con filtros
+// Get all travels with optional filters and pagination
 export const getTravels = async (req: Request, res: Response) => {
   try {
     const { type, country, year, page = 1, limit = 10 } = req.query;
     
-    // Construir filtro
+    // Build filter object
     const filter: any = {};
     if (type) filter.type = type;
     if (country) filter.country = country;
@@ -21,7 +20,7 @@ export const getTravels = async (req: Request, res: Response) => {
     const limitNum = parseInt(limit as string);
     const skip = (pageNum - 1) * limitNum;
 
-    // Ejecutar queries en paralelo
+    // Fetch travels with pagination
     const [travels, total] = await Promise.all([
       Travel.find(filter)
         .sort({ 'dates.start': -1 })
@@ -50,7 +49,7 @@ export const getTravels = async (req: Request, res: Response) => {
   }
 };
 
-// Obtener estadísticas
+// Get stats about travels
 export const getTravelStats = async (req: Request, res: Response) => {
   try {
     const stats = await Travel.aggregate([
@@ -134,7 +133,7 @@ export const getTravelStats = async (req: Request, res: Response) => {
   }
 };
 
-// Obtener viaje por ID
+// Get travel by ID
 export const getTravelById = async (req: Request, res: Response) => {
   try {
     const travel = await Travel.findById(req.params.id);
@@ -159,7 +158,7 @@ export const getTravelById = async (req: Request, res: Response) => {
   }
 };
 
-// Crear nuevo viaje
+// Create new travel
 export const createTravel = async (req: Request, res: Response) => {
   try {
     const travelData: ITravel = req.body;
@@ -180,7 +179,7 @@ export const createTravel = async (req: Request, res: Response) => {
   }
 };
 
-// Actualizar viaje
+// Update travel
 export const updateTravel = async (req: Request, res: Response) => {
   try {
     const travel = await Travel.findByIdAndUpdate(
@@ -210,7 +209,7 @@ export const updateTravel = async (req: Request, res: Response) => {
   }
 };
 
-// Eliminar viaje
+// Delete travel
 export const deleteTravel = async (req: Request, res: Response) => {
   try {
     const travel = await Travel.findByIdAndDelete(req.params.id);

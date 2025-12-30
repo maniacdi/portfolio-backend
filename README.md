@@ -28,21 +28,21 @@ portfolio-backend/
 ## 🚀 Instalación
 
 ```bash
-# Clonar repositorio
+# Clone repository
 git clone https://github.com/tu-usuario/portfolio-backend.git
 cd portfolio-backend
 
-# Instalar dependencias
+# Install dependencies
 npm install
 
-# Configurar variables de entorno
+# Configure environment variables
 cp .env.example .env
-# Editar .env con tus valores
+# Edit .env with your values
 
-# Iniciar en desarrollo
+# Start development server
 npm run dev
 
-# Iniciar en producción
+# For production build
 npm run build
 npm start
 ```

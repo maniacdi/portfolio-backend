@@ -1,23 +1,29 @@
-// src/config/database.ts
 import mongoose from 'mongoose';
+import { config } from './env';
 
 export const connectToDatabase = async () => {
   try {
-    const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio';
+    console.log('🔗 Attempting MongoDB connection to:', config.mongoUri.replace(/\/\/([^:]+):([^@]+)@/, '//***:***@'));
     
-    await mongoose.connect(MONGODB_URI);
-    console.log('✅ Conectado a MongoDB');
-    
+    await mongoose.connect(config.mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    });
+
+    console.log('✅ Connected to MongoDB');
+
     mongoose.connection.on('error', (error) => {
-      console.error('❌ Error de MongoDB:', error);
+      console.error('❌ Error on MongoDB:', error);
     });
-    
+
     mongoose.connection.on('disconnected', () => {
-      console.log('⚠️  Desconectado de MongoDB');
+      console.log('⚠️  Disconnected from MongoDB');
     });
-    
+
+    return mongoose.connection;
+
   } catch (error) {
-    console.error('❌ Error conectando a MongoDB:', error);
+    console.error('❌ Error connecting to MongoDB:', error);
     process.exit(1);
   }
 };

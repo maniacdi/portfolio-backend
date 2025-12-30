@@ -1,4 +1,3 @@
-// src/routes/travels.ts
 import { Router } from 'express';
 import { 
   getTravels,
@@ -11,22 +10,22 @@ import {
 
 const router = Router();
 
-// GET /api/travels - Obtener todos los viajes (con filtros opcionales)
+// GET /api/travels - Get all travels with pagination and filters
 router.get('/', getTravels);
 
-// GET /api/travels/stats - Estadísticas de viajes
+// GET /api/travels/stats - Stats about travels
 router.get('/stats', getTravelStats);
 
-// GET /api/travels/:id - Obtener un viaje por ID
+// GET /api/travels/:id - Get travel by ID
 router.get('/:id', getTravelById);
 
-// POST /api/travels - Crear nuevo viaje
+// POST /api/travels - Create new travel
 router.post('/', createTravel);
 
-// PUT /api/travels/:id - Actualizar viaje
+// PUT /api/travels/:id - Update travel
 router.put('/:id', updateTravel);
 
-// DELETE /api/travels/:id - Eliminar viaje
+// DELETE /api/travels/:id - Delete travel
 router.delete('/:id', deleteTravel);
 
 export default router;
