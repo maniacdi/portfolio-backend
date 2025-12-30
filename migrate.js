@@ -1,8 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 const localUri = 'mongodb://localhost:27017';
-const atlasUri =
-  'mongodb+srv://magaldi:wSuSkCW9wVwSSl5Y@cluster0.kw2n0gr.mongodb.net/?retryWrites=true&w=majority';
+const atlasUri = '<mongodb+srv://magaldi:>';
 
 async function migrate() {
   console.log('🚚 Migrando datos a Atlas...');
