@@ -12,8 +12,14 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
+ origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://portfolio-backend-azure-one.vercel.app', 
+  ],
+  credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 
@@ -49,9 +55,3 @@ app.listen(PORT, () => {
 
 app.use('/images', express.static('public/images'));
 
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.FRONTEND_URL 
-    : 'http://localhost:3000',
-  credentials: true
-}));"// Deploy fix" 
