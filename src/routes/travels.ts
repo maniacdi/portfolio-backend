@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { 
+  getAllTravels,
   getTravels,
   getTravelById,
   createTravel,
@@ -12,6 +13,9 @@ const router = Router();
 
 // GET /api/travels - Get all travels with pagination and filters
 router.get('/', getTravels);
+
+// GET /api/travels - Get all travels without pagination
+router.get('/all', getAllTravels);
 
 // GET /api/travels/stats - Stats about travels
 router.get('/stats', getTravelStats);

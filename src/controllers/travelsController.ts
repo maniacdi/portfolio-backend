@@ -1,6 +1,40 @@
 import { Request, Response } from 'express';
 import Travel, { ITravel } from '../models/Travel';
 
+// Get ALL travels without pagination
+export const getAllTravels = async (req: Request, res: Response) => {
+  try {
+    const { type, country, year } = req.query;
+    
+    // Build filter
+    const filter: any = {};
+    if (type) filter.type = type;
+    if (country) filter.country = country;
+    if (year) {
+      const startDate = new Date(`${year}-01-01`);
+      const endDate = new Date(`${year}-12-31`);
+      filter['dates.start'] = { $gte: startDate, $lte: endDate };
+    }
+
+    // Fetch ALL travels (no pagination)
+    const travels = await Travel.find(filter)
+      .sort({ 'dates.start': -1 })
+      .lean();
+
+    res.json({
+      success: true,
+      data: travels,
+      total: travels.length
+    });
+  } catch (error) {
+    console.error('Error getting all travels:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Error al obtener los viajes'
+    });
+  }
+};
+
 // Get all travels with optional filters and pagination
 export const getTravels = async (req: Request, res: Response) => {
   try {
