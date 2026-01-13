@@ -46,6 +46,8 @@ app.get('/api/test', (req, res) => {
   });
 });
 
+app.use('/images', express.static('public/images'));
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Backend corriendo en http://localhost:${PORT}`);
@@ -53,5 +55,4 @@ app.listen(PORT, () => {
   console.log(`🔌 API Test: http://localhost:${PORT}/api/test`);
 });
 
-app.use('/images', express.static('public/images'));
 
