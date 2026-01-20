@@ -7,8 +7,8 @@ interface CVData {
 }
 
 const CV_URLS: CVData = {
-  es: 'https://res.cloudinary.com/tu-cloud/raw/upload/v1/cv/CV_Manuel_Diaz_ES.pdf',
-  en: 'https://res.cloudinary.com/tu-cloud/raw/upload/v1/cv/CV_Manuel_Diaz_EN.pdf'
+  es: 'https://res.cloudinary.com/dblcttl2g/image/upload/v1768944549/CV_JavierGarciaMagaldi_dhoeny.pdf',
+  en: 'https://res.cloudinary.com/dblcttl2g/image/upload/v1768944548/CV_JavierGarcia_enupah.pdf'
 };
 
 export const cvController = {
