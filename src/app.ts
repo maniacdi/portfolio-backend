@@ -17,7 +17,8 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:3001',
     'https://portfolio-backend-azure-one.vercel.app', 
-    'https://magaldidev.vercel.app'
+    'https://magaldidev.vercel.app',
+    'https://javimagaldi.com',
   ],
   credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
