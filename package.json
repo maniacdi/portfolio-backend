@@ -13,6 +13,7 @@
     "vercel-build": "npm run build",
     "start": "node dist/app.js",
     "seed": "ts-node src/scripts/seed.ts",
+    "seed:projects": "ts-node src/scripts/seedProjects.ts",
     "lint": "eslint src/**/*.ts",
     "test": "jest"
   },

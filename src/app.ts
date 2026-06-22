@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectToDatabase } from './config/database';
 import travelRoutes from './routes/travels';
+import projectRoutes from './routes/projects';
 import cvRoutes from './routes/cv';
 
 // Load environment variables
@@ -31,6 +32,7 @@ connectToDatabase();
 
 // Routes
 app.use('/api/travels', travelRoutes);
+app.use('/api/projects', projectRoutes);
 app.use('/api/cv', cvRoutes);
 
 // Health check
